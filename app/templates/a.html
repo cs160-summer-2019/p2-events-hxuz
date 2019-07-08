@@ -21,7 +21,7 @@
 				<h3>Task 1a</h3>
 			</div>
 			<div class="col-6">
-				<button class="btn btn-light float-right">
+				<button class="btn btn-light float-right" id="reset">
 					Reset
 				</button>
 			</div>
@@ -44,8 +44,8 @@
 					<div class="p2-circle bg-yellow"></div>
 					<div class="p2-circle bg-yellow"></div>
 					<div class="p2-circle bg-yellow"></div>
-					<div class="p2-circle bg-orange p2-border"></div>
-					<div class="p2-circle bg-orange p2-border"></div>
+					<div class="p2-circle bg-orange p2-border orange-bordered"></div>
+					<div class="p2-circle bg-orange p2-border orange-bordered"></div>
 					<div class="p2-circle bg-orange"></div>
 					<div class="p2-circle bg-orange"></div>
 					<div class="p2-circle bg-orange"></div>
@@ -63,7 +63,35 @@
 
 
 <script type="text/javascript">
-	// your solution here
+	$(document).ready(() => {
+    //Clicking on a purple bubble pops (i.e. hides) all purple bubbles
+    $('.bg-purple').on('click', () => {
+      $('.bg-purple').hide();
+    })
+  
+    //Clicking on a green bubble pops all bubbles that are green and bubbles that are blue
+    $('.bg-green').on('click', () => {
+      $('.bg-green').hide();
+      $('.bg-blue').hide();
+    })
+  
+    //Clicking on an orange bordered bubble pops all other orange bordered bubbles
+    $('.orange-bordered').on('click', event => {
+      $(event.currentTarget).removeClass('orange-bordered');
+      $('.orange-bordered').hide();
+      $(event.currentTarget).addClass('orange-bordered');
+    });
+  
+    //Hovering over the gradient bubble hides the gradient bubble
+    $('#gradient-circle').on('mouseenter', () => {
+      $('#gradient-circle').hide();
+    });
+    
+    //Reset
+    $('#reset').on('click', () => {
+      $('.p2-circle').show();
+    });
+  });
 
 </script>
 </body>

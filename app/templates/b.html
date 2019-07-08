@@ -14,14 +14,14 @@
 
 </head>
 
-<body>
+<body onload="addBubble()">
 	<div class="container">
 		<div class="row">
 			<div class="col-6">
 				<h3>Task 1b</h3>
 			</div>
 			<div class="col-6">
-				<button class="btn btn-light float-right">
+				<button class="btn btn-light float-right" id="stop">
 					Stop
 				</button>
 			</div>
@@ -38,9 +38,36 @@
 	</div>
 
 
-<script type="text/javascript">
-
-	// your solution here
+<script>
+  //Load 20 bubbles
+  var var1;
+  
+  function green() {$('.shape-container').append("<div class='p2-circle bg-green'></div>");}
+  function purple() {$('.shape-container').append("<div class='p2-circle bg-purple'></div>");}
+  function blue() {$('.shape-container').append("<div class='p2-circle bg-blue'></div>");}
+  function yellow() {$('.shape-container').append("<div class='p2-circle bg-yellow'></div>");}
+  function orange() {$('.shape-container').append("<div class='p2-circle bg-orange'></div>");}
+  function gradient() {$('.shape-container').append("<div class='p2-circle' id='gradient-circle'></div>");}
+  
+  var funcs = [green, purple, blue, yellow, orange, gradient];
+  
+  function random() {
+    funcs[Math.floor(Math.random()*funcs.length)]();
+  }
+  
+  function addBubble() {
+    var1 = setTimeout(function() {
+      random();
+      addBubble();
+    }, 1000);
+  }
+  
+  //Stop adding
+  $(document).ready(() => {
+    $('#stop').on('click', () => {
+      window.clearInterval(var1);
+    });
+  });
 
 </script>
 </body>
